@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faisal Shaikh | Enterprise Technology Portfolio</title>
+<meta name="description" content="Enterprise Applications, Digital Transformation and Supply Chain Technology portfolio of Faisal Shaikh.">
+<style>
+/* ==========================================================================
+   Faisal Shaikh — Enterprise Technology Portfolio
+   Design language: a night-shift logistics control tower.
+   Dark ops-room base, radar-teal + beacon-amber signal colors,
+   manifest/waybill motifs for structure (tracking codes, route lines,
+   ticket-stub metrics). Grounded in the subject: TMS / Control Tower /
+   route & load planning is literally what this person builds.
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root{
+  /* --- surfaces --- */
+  --ink:        #0A1520;
+  --ink-2:      #0D1B29;
+  --panel:      #111F30;
+  --panel-2:    #16283C;
+  --panel-3:    #1C3149;
+  --border:     #26394E;
+  --border-soft:rgba(220,232,245,0.08);
+
+  /* --- text --- */
+  --text:       #EAF0F7;
+  --text-dim:   #9FB3C8;
+  --text-mute:  #6C8199;
+
+  /* --- signal colors --- */
+  --teal:       #2FD1BE;
+  --teal-ink:   #08312C;
+  --teal-dim:   rgba(47,209,190,0.14);
+  --amber:      #F3A94B;
+  --amber-dim:  rgba(243,169,75,0.16);
+
+  /* --- manifest paper accent (used sparingly, small doses) --- */
+  --paper:      #E9E3D0;
+  --paper-ink:  #2A2418;
+
+  --radius:     10px;
+  --radius-sm:  6px;
+
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body:    'Inter', 'Segoe UI', sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
+
+  --max: 1180px;
+}
+
+*, *::before, *::after{ box-sizing: border-box; }
+html{ scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+  *, *::before, *::after{ animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+body{
+  margin:0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* faint radar grid on the base layer */
+body{
+  background-image:
+    linear-gradient(rgba(47,209,190,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(47,209,190,0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  background-position: center top;
+}
+
+a{ color: inherit; text-decoration: none; }
+h1,h2,h3,h4{ font-family: var(--font-display); margin: 0; color: #fff; letter-spacing: -0.01em; }
+p{ margin:0; }
+ul{ margin:0; padding:0; list-style:none; }
+img{ max-width:100%; display:block; }
+
+:focus-visible{
+  outline: 2px solid var(--teal);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.eyebrow{
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  margin: 0 0 0.9rem;
+}
+.eyebrow::before{
+  content:"";
+  width: 7px; height: 7px;
+  background: var(--teal);
+  border-radius: 50%;
+  box-shadow: 0 0 0 3px var(--teal-dim);
+  flex: none;
+}
+
+.wrap{ max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+/* ---------------------------------- nav ---------------------------------- */
+.site-header{
+  position: sticky; top:0; z-index: 50;
+  background: rgba(10,21,32,0.82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.nav{
+  max-width: var(--max); margin: 0 auto; padding: 0 28px;
+  height: 68px;
+  display:flex; align-items:center; justify-content: space-between;
+}
+.logo{
+  font-family: var(--font-display); font-weight:700; font-size: 1.05rem;
+  color:#fff; display:flex; align-items:center; gap:0.55rem;
+}
+.logo-mark{
+  width: 20px; height: 20px; flex:none;
+}
+.nav-links{ display:flex; align-items:center; gap: 2.1rem; }
+.nav-links a{
+  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-dim);
+  transition: color 0.15s ease;
+}
+.nav-links a:hover{ color: var(--teal); }
+.nav-links a.cta-link{
+  color: var(--ink); background: var(--teal);
+  padding: 0.5rem 0.95rem; border-radius: 999px; font-weight:500;
+}
+.nav-links a.cta-link:hover{ color: var(--ink); filter: brightness(1.08); }
+.nav-toggle{ display:none; }
+
+.breadcrumb{
+  display:flex; align-items:center; gap:0.5rem;
+  font-family: var(--font-mono); font-size:0.78rem; color: var(--text-mute);
+  text-transform: uppercase; letter-spacing: 0.08em;
+}
+.breadcrumb a{ color: var(--teal); }
+.breadcrumb a:hover{ text-decoration: underline; }
+
+/* --------------------------------- hero ---------------------------------- */
+.hero-section{
+  padding: 92px 0 60px;
+}
+.hero-grid{
+  display:grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items:center;
+}
+.hero h1{
+  font-size: clamp(2.1rem, 3.6vw, 3.15rem);
+  line-height: 1.08;
+  margin-bottom: 1.15rem;
+}
+.hero-copy{
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  max-width: 46ch;
+  margin-bottom: 2rem;
+}
+.hero-actions{ display:flex; gap: 0.9rem; flex-wrap: wrap; }
+
+.btn{
+  font-family: var(--font-mono); font-size: 0.82rem; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 0.85rem 1.4rem; border-radius: var(--radius-sm);
+  display:inline-flex; align-items:center; gap:0.5rem;
+  border: 1px solid transparent; transition: all 0.15s ease;
+}
+.btn.primary{ background: var(--teal); color: var(--teal-ink); font-weight:500; }
+.btn.primary:hover{ filter: brightness(1.08); transform: translateY(-1px); }
+.btn.secondary{ border-color: var(--border); color: var(--text); }
+.btn.secondary:hover{ border-color: var(--teal); color: var(--teal); }
+
+/* --- network visual (signature element) --- */
+.tower-panel{
+  border: 1px solid var(--border);
+  background: linear-gradient(160deg, var(--panel), var(--ink-2));
+  border-radius: var(--radius);
+  padding: 20px;
+  position: relative;
+  overflow:hidden;
+}
+.tower-panel::before{
+  content:"LIVE NETWORK";
+  position:absolute; top:16px; left:20px;
+  font-family: var(--font-mono); font-size:0.66rem; letter-spacing:0.14em;
+  color: var(--text-mute);
+}
+.tower-panel::after{
+  content:"";
+  position:absolute; top:17px; left: 122px;
+  width:6px; height:6px; border-radius:50%;
+  background: var(--amber);
+  box-shadow: 0 0 0 4px var(--amber-dim);
+  animation: blink 1.8s ease-in-out infinite;
+}
+@keyframes blink{ 0%,100%{opacity:1;} 50%{opacity:0.25;} }
+
+.network-svg{ width:100%; height:auto; display:block; margin-top: 22px; }
+.route-line{
+  fill:none; stroke: var(--teal); stroke-width:1.6; stroke-dasharray: 5 6;
+  opacity:0.85; animation: dash 22s linear infinite;
+}
+.route-line.alt{ stroke: var(--amber); animation-duration: 28s; opacity:0.6; }
+@keyframes dash{ to{ stroke-dashoffset: -400; } }
+.node{ fill: var(--ink); stroke: var(--teal); stroke-width:1.6; }
+.node.pulse circle.ring{
+  fill:none; stroke: var(--teal); stroke-width:1; opacity:0.5;
+  transform-origin: center;
+  animation: ring 2.6s ease-out infinite;
+}
+.node.amber{ stroke: var(--amber); }
+.node.amber .ring{ stroke: var(--amber); }
+.node.hub{ stroke-width: 2.2; }
+.node.diamond{ stroke-width: 2; }
+.node.waypoint circle:not(.ring){ opacity: 0.9; }
+.legend{
+  display:flex; gap:1.4rem; margin-top:10px;
+  font-family: var(--font-mono); font-size:0.65rem; letter-spacing:0.05em; text-transform:uppercase; color: var(--text-mute);
+}
+.legend span{ display:flex; align-items:center; gap:0.45rem; }
+.legend .swatch{ width:9px; height:9px; border:1.6px solid var(--teal); background:var(--ink); flex:none; }
+.legend .swatch.circle{ border-radius:50%; }
+.legend .swatch.diamond{ transform: rotate(45deg); }
+
+/* --- ambient radar sweep (hero signature visual) --- */
+.radar-ring{ fill:none; stroke: var(--border); stroke-width:1; stroke-dasharray: 2 5; opacity:0.7; }
+.radar-cross{ stroke: var(--border-soft); stroke-width:1; }
+.radar-sweep{
+  transform-origin: 240px 135px;
+  animation: radar-spin 7s linear infinite;
+}
+@keyframes radar-spin{ to{ transform: rotate(360deg); } }
+.radar-blip circle:not(.ring){ fill: var(--teal); stroke:none; }
+.radar-blip.dim circle:not(.ring){ fill: var(--text-mute); opacity:0.6; }
+.radar-blip.dim .ring{ display:none; }
+@keyframes ring{ 0%{ transform: scale(0.5); opacity:0.7;} 100%{ transform: scale(2.1); opacity:0; } }
+.node-label{
+  font-family: var(--font-mono); font-size: 8.5px; fill: var(--text-dim); letter-spacing: 0.03em;
+}
+
+/* --------------------------------- ticket / metrics --------------------- */
+.metrics{
+  max-width: var(--max); margin: 0 auto; padding: 0 28px 0;
+}
+.metrics-strip{
+  display:grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--border); border-radius: var(--radius);
+  background: var(--panel);
+  position:relative;
+}
+.metrics-strip > div{
+  padding: 1.5rem 1.4rem;
+  border-right: 1px dashed var(--border);
+  position:relative;
+}
+.metrics-strip > div:last-child{ border-right:none; }
+.metrics-strip strong{
+  display:block; font-family: var(--font-display); font-size: 1.5rem; color:#fff; font-weight:700;
+}
+.metrics-strip span{
+  display:block; font-family: var(--font-mono); font-size: 0.68rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text-mute); margin-top: 0.35rem;
+}
+
+/* ---------------------------------- sections ------------------------------ */
+.section{ padding: 88px 0; max-width: var(--max); margin:0 auto; padding-left:28px; padding-right:28px; }
+.section h2{ font-size: clamp(1.5rem, 2.4vw, 2.05rem); margin: 0.5rem 0 1.6rem; max-width: 30ch; }
+
+.about{ display:grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items:start; }
+.about p{ color: var(--text-dim); font-size: 1.02rem; max-width: 56ch; }
+
+.bridge{
+  border:1px solid var(--border); border-radius: var(--radius); background: var(--panel);
+  padding: 1.6rem; margin-top: 1.5rem;
+}
+.bridge-row{ display:flex; align-items:center; gap: 0.9rem; }
+.bridge-node{
+  font-family: var(--font-mono); font-size:0.72rem; letter-spacing:0.04em; text-transform: uppercase;
+  padding: 0.6rem 0.85rem; border-radius: 999px; border:1px solid var(--border); color: var(--text-dim);
+  white-space: nowrap;
+}
+.bridge-node.now{ color: var(--teal); border-color: var(--teal); background: var(--teal-dim); }
+.bridge-arrow{ color: var(--text-mute); flex:1; position:relative; height:1px; background: var(--border); }
+.bridge-arrow::after{ content:"→"; position:absolute; right:-2px; top:-10px; color: var(--text-mute); }
+.bridge-caption{ font-family: var(--font-mono); font-size:0.72rem; color: var(--text-mute); margin-top:1rem; letter-spacing:0.03em; }
+
+/* --- expertise cards --- */
+.cards.three{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.card{
+  border:1px solid var(--border); border-radius: var(--radius); background: var(--panel);
+  padding: 1.7rem; transition: border-color 0.15s ease, transform 0.15s ease;
+}
+.card:hover{ border-color: var(--teal); transform: translateY(-2px); }
+.card .icon{ width:30px; height:30px; margin-bottom:1.1rem; color: var(--teal); }
+.card h3{ font-size: 1.08rem; margin-bottom: 0.6rem; }
+.card p{ color: var(--text-dim); font-size: 0.95rem; }
+
+/* --- case study manifest cards --- */
+.case-grid{ display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.case-card{
+  display:block; border:1px solid var(--border); border-radius: var(--radius);
+  background: var(--panel); padding: 1.5rem; transition: all 0.15s ease; position:relative;
+}
+.case-card:hover{ border-color: var(--teal); transform: translateY(-3px); background: var(--panel-2); }
+.case-card .tag{
+  font-family: var(--font-mono); font-size: 0.66rem; letter-spacing:0.09em; text-transform:uppercase;
+  color: var(--amber); display:block; margin-bottom: 0.9rem;
+}
+.case-card h3{ font-size:1.12rem; margin-bottom: 0.55rem; }
+.case-card p{ color: var(--text-dim); font-size: 0.92rem; margin-bottom: 1.1rem; }
+.case-card .read-more{
+  font-family: var(--font-mono); font-size:0.72rem; letter-spacing:0.06em; text-transform:uppercase;
+  color: var(--teal); display:flex; align-items:center; gap:0.4rem;
+}
+.case-card .read-more::after{ content:"→"; transition: transform 0.15s ease; }
+.case-card:hover .read-more::after{ transform: translateX(3px); }
+
+/* --- delivery path: horizontal route strip --- */
+.route-strip{
+  position:relative; display:flex; padding-top: 7px; margin-top: 2.4rem;
+}
+.route-strip::before{
+  content:""; position:absolute; left:0; right:0; top:16px; height:1px;
+  background: rgba(243,169,75,0.35);
+}
+.route-stop{
+  position:relative; z-index:1; flex:1; display:flex; flex-direction:column; align-items:center;
+  text-align:center; padding: 0 6px;
+}
+.route-stop .dot{
+  width:13px; height:13px; border-radius:50%; background: var(--ink); border:2px solid var(--amber);
+  margin-bottom:16px;
+}
+.route-stop.current .dot{
+  background: var(--teal); border-color: var(--teal);
+  box-shadow: 0 0 0 5px var(--teal-dim);
+  animation: blink 1.8s ease-in-out infinite;
+}
+.route-stop .code{
+  font-family: var(--font-display); font-weight:700; font-size:0.92rem; color:#fff;
+  letter-spacing:0.01em; margin-bottom:0.5rem;
+}
+.route-stop.current .code{ color: var(--teal); }
+.route-stop .caption{
+  font-family: var(--font-mono); font-size:0.66rem; letter-spacing:0.06em; text-transform:uppercase;
+  color: var(--text-mute); line-height:1.5;
+}
+
+@media (max-width: 900px){
+  .route-strip{ flex-wrap:wrap; row-gap: 2.4rem; }
+  .route-strip::before{ display:none; }
+  .route-stop{ flex: 0 0 25%; }
+}
+@media (max-width: 560px){
+  .route-strip{ flex-direction:column; align-items:flex-start; row-gap: 1.6rem; }
+  .route-stop{ flex:none; width:100%; flex-direction:row; justify-content:flex-start; text-align:left; gap:0.9rem; }
+  .route-stop .dot{ margin-bottom:0; flex:none; }
+  .route-stop .code{ margin-bottom:0.2rem; }
+}
+
+/* --- tech ecosystem --- */
+.tech-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.tech-grid > div{ border:1px solid var(--border); border-radius: var(--radius); background: var(--panel); padding: 1.4rem; }
+.tech-grid h3{
+  font-family: var(--font-mono); font-size:0.7rem; letter-spacing:0.1em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 0.9rem; font-weight:500;
+}
+.tech-grid p{ color: var(--text-dim); font-size: 0.9rem; line-height:1.7; }
+
+.chips{ display:flex; flex-wrap:wrap; gap: 0.5rem; }
+.chip{
+  font-family: var(--font-mono); font-size: 0.75rem; padding: 0.4rem 0.75rem;
+  border:1px solid var(--border); border-radius: 999px; color: var(--text-dim);
+}
+
+/* --- contact --- */
+.contact{ text-align:left; }
+.contact-panel{
+  border:1px solid var(--border); border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--panel), var(--ink-2));
+  padding: 2.6rem; display:flex; justify-content:space-between; align-items:flex-end; gap: 2rem; flex-wrap:wrap;
+}
+.contact-list{ display:flex; flex-direction:column; gap: 0.6rem; margin-top:1.2rem; }
+.contact-list a, .contact-list span{
+  font-family: var(--font-mono); font-size:0.92rem; color: var(--text-dim); display:flex; gap:0.7rem; align-items:center;
+}
+.contact-list a:hover{ color: var(--teal); }
+.contact-actions{ display:flex; gap:0.8rem; flex-wrap:wrap; }
+
+footer.site-footer{
+  border-top: 1px solid var(--border-soft); padding: 2rem 0; margin-top: 2rem;
+}
+footer.site-footer .wrap{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;
+  font-family: var(--font-mono); font-size:0.75rem; color: var(--text-mute);
+}
+
+/* ============================== case study page ============================ */
+.case-hero{ padding: 46px 0 0; }
+.case-manifest{
+  border:1px solid var(--border); border-radius: var(--radius); background: var(--panel);
+  padding: 2.2rem; margin-top:1.6rem; position:relative; overflow:hidden;
+}
+.case-manifest::before{
+  content:""; position:absolute; left:0; top:0; bottom:0; width:4px; background: var(--teal);
+}
+.case-title-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:1.5rem; flex-wrap:wrap; }
+.case-manifest h1{ font-size: clamp(1.7rem, 3vw, 2.4rem); max-width: 22ch; }
+.status-stamp{
+  font-family: var(--font-mono); font-size:0.68rem; letter-spacing:0.1em; text-transform:uppercase;
+  border: 1px solid var(--amber); color: var(--amber); padding: 0.45rem 0.8rem; border-radius: var(--radius-sm);
+  white-space:nowrap; transform: rotate(1.2deg);
+}
+.case-summary{ color: var(--text-dim); font-size: 1.05rem; max-width: 68ch; margin-top: 1.1rem; }
+
+.manifest-meta{
+  display:grid; grid-template-columns: repeat(3,1fr); gap:1px; background: var(--border);
+  border:1px solid var(--border); border-radius: var(--radius-sm); margin-top: 1.8rem; overflow:hidden;
+}
+.manifest-meta > div{ background: var(--panel-2); padding: 1rem 1.2rem; }
+.manifest-meta .k{ font-family: var(--font-mono); font-size:0.63rem; letter-spacing:0.1em; text-transform:uppercase; color: var(--text-mute); display:block; margin-bottom:0.4rem; }
+.manifest-meta .v{ font-size:0.92rem; color: var(--text); }
+
+.case-body{ max-width: var(--max); margin: 0 auto; padding: 60px 28px 0; display:grid; grid-template-columns: 1fr; gap: 46px; }
+.case-block h2{
+  font-size: 1.3rem; margin-bottom: 0.9rem; display:flex; align-items:center; gap:0.7rem;
+}
+.case-block h2 .idx{ font-family: var(--font-mono); font-size:0.75rem; color: var(--teal); }
+.case-block p{ color: var(--text-dim); font-size:1rem; max-width: 76ch; }
+.case-block ul{ display:flex; flex-direction:column; gap:0.7rem; margin-top: 0.4rem; }
+.case-block ul li{
+  color: var(--text-dim); font-size:0.98rem; padding-left: 1.3rem; position:relative; max-width:74ch;
+}
+.case-block ul li::before{
+  content:""; position:absolute; left:0; top:0.55em; width:6px; height:6px; background: var(--teal); border-radius:1px;
+}
+.case-block.impact ul li::before{ background: var(--amber); }
+
+.case-cta{
+  display:flex; justify-content:space-between; align-items:center; gap:1.5rem; flex-wrap:wrap;
+  border-top: 1px solid var(--border-soft); margin-top: 20px; padding: 2.4rem 28px 0; max-width: var(--max); margin-left:auto; margin-right:auto;
+}
+
+/* ================================ responsive ================================ */
+@media (max-width: 900px){
+  .hero-grid{ grid-template-columns: 1fr; }
+  .about{ grid-template-columns: 1fr; }
+  .cards.three{ grid-template-columns: 1fr 1fr; }
+  .case-grid{ grid-template-columns: 1fr 1fr; }
+  .tech-grid{ grid-template-columns: 1fr 1fr; }
+  .metrics-strip{ grid-template-columns: 1fr 1fr; }
+  .metrics-strip > div:nth-child(2){ border-right:none; }
+  .manifest-meta{ grid-template-columns: 1fr; }
+}
+@media (max-width: 640px){
+  .nav-links{
+    position:absolute; top:68px; left:0; right:0; background: var(--ink-2);
+    flex-direction:column; align-items:flex-start; padding: 1.2rem 28px; gap:1.1rem;
+    border-bottom: 1px solid var(--border-soft); display:none;
+  }
+  .nav-links.open{ display:flex; }
+  .nav-toggle{
+    display:flex; width:34px; height:34px; border:1px solid var(--border); border-radius:6px;
+    background:none; color:var(--text); align-items:center; justify-content:center; cursor:pointer;
+  }
+  .cards.three{ grid-template-columns: 1fr; }
+  .case-grid{ grid-template-columns: 1fr; }
+  .tech-grid{ grid-template-columns: 1fr; }
+  .metrics-strip{ grid-template-columns: 1fr 1fr; }
+  .metrics-strip > div:nth-child(odd){ border-right: 1px dashed var(--border); }
+  .metrics-strip > div:nth-child(even){ border-right:none; }
+  .contact-panel{ padding: 1.6rem; }
+  .case-title-row{ flex-direction:column; }
+}
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="#" class="logo">
+      <svg class="logo-mark" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 3v7" stroke="#2FD1BE" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M7 7c0-2.76 2.24-5 5-5s5 2.24 5 5" stroke="#F3A94B" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="12" cy="12" r="2.4" stroke="#2FD1BE" stroke-width="1.6"/>
+        <path d="M4 21h16M8 21v-4h8v4" stroke="#9FB3C8" stroke-width="1.4" stroke-linecap="round"/>
+      </svg>
+      Faisal Shaikh
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false" id="navToggle">
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 5h14M2 9h14M2 13h14" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#expertise">Expertise</a>
+      <a href="#case-studies">Case Studies</a>
+      <a href="#journey">Journey</a>
+      <a href="#contact" class="cta-link">Contact</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="hero-section">
+    <div class="wrap hero-grid">
+      <div class="hero">
+        <p class="eyebrow">Enterprise Technology Portfolio</p>
+        <h1>Enterprise Applications, Digital Transformation &amp; Supply Chain Technology</h1>
+        <p class="hero-copy">Helping organizations modernize enterprise applications, supply chain operations and business processes through technology, automation and enterprise solution delivery.</p>
+        <div class="hero-actions">
+          <a class="btn primary" href="#case-studies">View Case Studies</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+
+      <div class="tower-panel">
+        <svg class="network-svg" viewBox="0 0 480 270" xmlns="http://www.w3.org/2000/svg">
+          <!-- ambient radar sweep — atmospheric signature visual, deliberately
+               free of specific labels. The real, detailed project history
+               lives in the Delivery Path section below, where it has room
+               to be read properly. -->
+          <g transform="translate(240,135)">
+            <circle class="radar-ring" r="38"/>
+            <circle class="radar-ring" r="70"/>
+            <circle class="radar-ring" r="102"/>
+            <line class="radar-cross" x1="-102" y1="0" x2="102" y2="0"/>
+            <line class="radar-cross" x1="0" y1="-102" x2="0" y2="102"/>
+
+            <g class="radar-sweep">
+              <path d="M0 0 L106.7 -26.6 A110 110 0 0 1 106.7 26.6 Z" fill="url(#sweepFade)"/>
+            </g>
+
+            <g class="node pulse radar-blip" transform="translate(58,-46)">
+              <circle class="ring" r="5"/>
+              <circle r="3.2"/>
+            </g>
+            <g class="node pulse radar-blip dim" transform="translate(-70,18)">
+              <circle class="ring" r="4"/>
+              <circle r="2.6"/>
+            </g>
+            <g class="node pulse radar-blip" transform="translate(24,64)">
+              <circle class="ring" r="4.5"/>
+              <circle r="3"/>
+            </g>
+            <g class="node pulse radar-blip dim" transform="translate(-40,-70)">
+              <circle class="ring" r="3.6"/>
+              <circle r="2.4"/>
+            </g>
+          </g>
+
+          <defs>
+            <linearGradient id="sweepFade" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#2FD1BE" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#2FD1BE" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="metrics">
+    <div class="metrics-strip">
+      <div><strong>6+</strong><span>Years Experience</span></div>
+      <div><strong>10+</strong><span>Enterprise Implementations</span></div>
+      <div><strong>5</strong><span>Countries Delivered</span></div>
+      <div><strong>ERP · OMS · WMS · TMS</strong><span>Enterprise Systems</span></div>
+    </div>
+  </section>
+
+  <section class="section about">
+    <div>
+      <p class="eyebrow">About</p>
+      <h2>Business-focused technology delivery across enterprise systems and operations.</h2>
+    </div>
+    <div>
+      <p>My career has allowed me to experience enterprise technology from two perspectives: first as an implementation consultant delivering logistics and supply chain platforms for customers, and later as a business-side owner of enterprise applications and digital transformation initiatives. This combination helps me bridge business strategy, operational workflows and technology execution.</p>
+      <div class="bridge">
+        <div class="bridge-row">
+          <span class="bridge-node">Vendor-Side Consultant</span>
+          <span class="bridge-arrow"></span>
+          <span class="bridge-node now">Business-Side Owner</span>
+        </div>
+        <p class="bridge-caption">Same systems, both sides of the table — implementation delivery, then ongoing ownership.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="expertise" class="section">
+    <p class="eyebrow">Expertise</p>
+    <h2>What I Do</h2>
+    <div class="cards three">
+      <article class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M12 3 3 8l9 5 9-5-9-5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 12l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M3 16l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        <h3>Enterprise Applications</h3>
+        <p>Microsoft Dynamics 365 F&amp;O, OMS, WMS, business systems, enterprise application ownership and application governance.</p>
+      </article>
+      <article class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><circle cx="5" cy="12" r="2.3" stroke="currentColor" stroke-width="1.5"/><circle cx="19" cy="6" r="2.3" stroke="currentColor" stroke-width="1.5"/><circle cx="19" cy="18" r="2.3" stroke="currentColor" stroke-width="1.5"/><path d="M7.2 11 16.8 6.9M7.2 13 16.8 17.1" stroke="currentColor" stroke-width="1.5"/></svg>
+        <h3>Digital Transformation</h3>
+        <p>Business analysis, process mapping, automation, vendor coordination, SDLC, UAT, go-live and change management.</p>
+      </article>
+      <article class="card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M3 17c3-8 6-3 9-9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="2.4 2.4"/><circle cx="18" cy="6" r="2.6" stroke="currentColor" stroke-width="1.5"/><path d="M3 20h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <h3>Supply Chain Technology</h3>
+        <p>TMS, Control Tower, DMS, load planning, route planning, GPS integrations, warehouse and fulfilment workflows.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="case-studies" class="section">
+    <p class="eyebrow">Enterprise Case Studies</p>
+    <h2>Selected Transformation Work</h2>
+    <div class="case-grid">
+      <a class="case-card" href="#case-starship">
+        <span class="tag">Manufacturing · Middle Mile</span>
+        <h3>Starship / Kurl-on</h3>
+        <p>AI-enabled TMS, SAP integration, load planning, mobile POD and Control Tower visibility.</p>
+        <span class="read-more">Read case study</span>
+      </a>
+      <a class="case-card" href="#case-fedex">
+        <span class="tag">Cross-Border Logistics</span>
+        <h3>FedEx UAE</h3>
+        <p>GCC Control Tower, GPS integrations, geofencing, route intelligence and customs milestone tracking.</p>
+        <span class="read-more">Read case study</span>
+      </a>
+      <a class="case-card" href="#case-khimji">
+        <span class="tag">FMCG Distribution</span>
+        <h3>Khimji Ramdas</h3>
+        <p>SAP-integrated TMS, load planning, route planning, mobile delivery and Control Tower across Oman.</p>
+        <span class="read-more">Read case study</span>
+      </a>
+      <a class="case-card" href="#case-lulu">
+        <span class="tag">Retail · Last Mile</span>
+        <h3>Lulu Hypermarket</h3>
+        <p>SAP Hybris integration, Google geocoding, area master, route planning and slot-based delivery.</p>
+        <span class="read-more">Read case study</span>
+      </a>
+      <a class="case-card" href="#case-sugar">
+        <span class="tag">Enterprise Applications</span>
+        <h3>Sugar Cosmetics</h3>
+        <p>Dynamics 365, OMS/WMS, marketplace integrations, automation, inventory dashboard and fulfilment.</p>
+        <span class="read-more">Read case study</span>
+      </a>
+      <a class="case-card" href="#case-batchify">
+        <span class="tag">Process Automation</span>
+        <h3>Batchify</h3>
+        <p>Batch lifecycle management platform replacing spreadsheet-driven batch creation and governance.</p>
+        <span class="read-more">Read case study</span>
+      </a>
+    </div>
+  </section>
+
+
+  <section class="case-hero case-detail" id="case-starship">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="#case-studies">← All Case Studies</a></p>
+
+      <div class="case-manifest">
+        <div class="case-title-row">
+          <div>
+            <p class="eyebrow">Manufacturing · Middle Mile</p>
+            <h1>Starship / Kurl-on</h1>
+          </div>
+          <span class="status-stamp">File No. 01 / 06</span>
+        </div>
+        <p class="case-summary">SAP-integrated TMS implementation for pan-India middle-mile movement with AI load planning, route planning, mobile POD and Control Tower visibility.</p>
+
+        <div class="manifest-meta">
+          <div><span class="k">Sector</span><span class="v">Manufacturing</span></div>
+          <div><span class="k">Scope</span><span class="v">Pan-India Middle-Mile Network</span></div>
+          <div><span class="k">Platform</span><span class="v">WebXpress TMS + SAP ERP</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="case-body">
+    <div class="case-block">
+      <h2><span class="idx">01</span> Business Challenge</h2>
+      <p>Transportation planning was manual, vehicle selection was manual, load planning relied on spreadsheets, vehicle utilization was poor, shipment visibility was limited and POD handling was manual.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">02</span> Solution Delivered</h2>
+      <p>Implemented WebXpress TMS integrated with SAP ERP. Sales orders flowed into TMS with SKU dimensions, load planning used vehicle master data and compressibility logic, and dispatch execution connected to mobile POD and Control Tower visibility.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">03</span> My Role</h2>
+      <ul>
+        <li>Led business workshops with SCM and logistics stakeholders.</li>
+        <li>Designed SAP-to-TMS API field mapping.</li>
+        <li>Configured vehicle masters, load planning rules and dispatch workflows.</li>
+        <li>Led UAT, user training, go-live and hypercare.</li>
+      </ul>
+    </div>
+
+    <div class="case-block impact">
+      <h2><span class="idx">04</span> Business Impact</h2>
+      <ul>
+        <li>Automated order-to-dispatch flow.</li>
+        <li>Improved load planning and vehicle utilization logic.</li>
+        <li>Enabled real-time vehicle visibility using mobile GPS.</li>
+        <li>Digitized POD capture and delivery confirmation.</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">05</span> Technology Stack</h2>
+      <div class="chips">
+        <span class="chip">WebXpress TMS</span>
+        <span class="chip">Control Tower</span>
+        <span class="chip">SAP ERP Integration</span>
+        <span class="chip">REST APIs</span>
+        <span class="chip">AI Load Planning</span>
+        <span class="chip">Route Planning</span>
+        <span class="chip">Mobile POD</span>
+        <span class="chip">GPS Tracking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-cta">
+    <a class="btn secondary" href="#case-studies">← All Case Studies</a>
+    <a class="btn primary" href="#case-fedex">Next: FedEx UAE →</a>
+  </div>
+
+
+  <section class="case-hero case-detail" id="case-fedex">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="#case-studies">← All Case Studies</a></p>
+
+      <div class="case-manifest">
+        <div class="case-title-row">
+          <div>
+            <p class="eyebrow">Express Logistics · GCC</p>
+            <h1>FedEx UAE</h1>
+          </div>
+          <span class="status-stamp">File No. 02 / 06</span>
+        </div>
+        <p class="case-summary">TMS and Control Tower implementation for inter-country GCC transportation visibility, geofencing and route intelligence.</p>
+
+        <div class="manifest-meta">
+          <div><span class="k">Sector</span><span class="v">Express Logistics</span></div>
+          <div><span class="k">Scope</span><span class="v">UAE ⇄ GCC Cross-Border Linehaul</span></div>
+          <div><span class="k">Platform</span><span class="v">WebXpress TMS + Control Tower</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="case-body">
+    <div class="case-block">
+      <h2><span class="idx">01</span> Business Challenge</h2>
+      <p>FedEx needed real-time visibility across GCC linehaul movements, customs clearance checkpoints and planned vs actual transit time monitoring.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">02</span> Solution Delivered</h2>
+      <p>Configured route masters, GPS integrations and geofences across GCC borders including Al Batha, Sila, Hatta and Wajajah. Control Tower tracked vehicle movement, border in/out events and transit performance.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">03</span> My Role</h2>
+      <ul>
+        <li>Configured route master and expected transit times.</li>
+        <li>Integrated nine GPS partners.</li>
+        <li>Designed geofence event reporting.</li>
+        <li>Supported UAT, training, go-live and operational reporting.</li>
+      </ul>
+    </div>
+
+    <div class="case-block impact">
+      <h2><span class="idx">04</span> Business Impact</h2>
+      <ul>
+        <li>Automated border milestone tracking.</li>
+        <li>Improved planned vs actual transit visibility.</li>
+        <li>Enabled customs clearance time monitoring.</li>
+        <li>Created operational movement reports for transportation teams.</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">05</span> Technology Stack</h2>
+      <div class="chips">
+        <span class="chip">WebXpress TMS</span>
+        <span class="chip">Control Tower</span>
+        <span class="chip">GPS APIs</span>
+        <span class="chip">Geofencing</span>
+        <span class="chip">Route Master</span>
+        <span class="chip">Operational Reporting</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-cta">
+    <a class="btn secondary" href="#case-studies">← All Case Studies</a>
+    <a class="btn primary" href="#case-khimji">Next: Khimji Ramdas →</a>
+  </div>
+
+
+  <section class="case-hero case-detail" id="case-khimji">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="#case-studies">← All Case Studies</a></p>
+
+      <div class="case-manifest">
+        <div class="case-title-row">
+          <div>
+            <p class="eyebrow">FMCG Distribution · Oman</p>
+            <h1>Khimji Ramdas</h1>
+          </div>
+          <span class="status-stamp">File No. 03 / 06</span>
+        </div>
+        <p class="case-summary">Enterprise TMS and Control Tower rollout for FMCG and consumer goods distribution across Muscat, Sohar, Sur and Nizwa.</p>
+
+        <div class="manifest-meta">
+          <div><span class="k">Sector</span><span class="v">FMCG Distribution</span></div>
+          <div><span class="k">Scope</span><span class="v">Muscat · Sohar · Sur · Nizwa</span></div>
+          <div><span class="k">Platform</span><span class="v">SAP-Integrated WebXpress TMS</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="case-body">
+    <div class="case-block">
+      <h2><span class="idx">01</span> Business Challenge</h2>
+      <p>Dispatch planning was manual across multiple divisions including P&amp;G, BEL Groupe, Beiersdorf, CPG and Commodities, requiring customer-category-based planning and better visibility.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">02</span> Solution Delivered</h2>
+      <p>Implemented SAP-integrated TMS with load planning, route planning, mobile delivery and Control Tower. Configured customer category rules and sub-area planning for Oman operations.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">03</span> My Role</h2>
+      <ul>
+        <li>Conducted multiple onsite implementation visits to Oman.</li>
+        <li>Configured customer segmentation rules for L1, L2 and L3 customers.</li>
+        <li>Supported SAP order integration and TMS configuration.</li>
+        <li>Led UAT, user training, go-live and hypercare.</li>
+      </ul>
+    </div>
+
+    <div class="case-block impact">
+      <h2><span class="idx">04</span> Business Impact</h2>
+      <ul>
+        <li>Standardized transportation planning across multiple divisions.</li>
+        <li>Enabled vehicle replay and route validation.</li>
+        <li>Improved dispatch discipline and visibility.</li>
+        <li>Delivered a high-value implementation recognized as a strong career milestone.</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">05</span> Technology Stack</h2>
+      <div class="chips">
+        <span class="chip">SAP Integration</span>
+        <span class="chip">WebXpress TMS</span>
+        <span class="chip">Load Planning</span>
+        <span class="chip">Route Planning</span>
+        <span class="chip">Mobile App</span>
+        <span class="chip">Control Tower</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-cta">
+    <a class="btn secondary" href="#case-studies">← All Case Studies</a>
+    <a class="btn primary" href="#case-lulu">Next: Lulu Hypermarket →</a>
+  </div>
+
+
+  <section class="case-hero case-detail" id="case-lulu">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="#case-studies">← All Case Studies</a></p>
+
+      <div class="case-manifest">
+        <div class="case-title-row">
+          <div>
+            <p class="eyebrow">Retail · E-commerce</p>
+            <h1>Lulu Hypermarket</h1>
+          </div>
+          <span class="status-stamp">File No. 04 / 06</span>
+        </div>
+        <p class="case-summary">SAP Hybris integrated TMS for B2C last-mile fulfilment across Indian cities.</p>
+
+        <div class="manifest-meta">
+          <div><span class="k">Sector</span><span class="v">Retail / E-commerce</span></div>
+          <div><span class="k">Scope</span><span class="v">B2C Last-Mile, India</span></div>
+          <div><span class="k">Platform</span><span class="v">SAP Hybris + WebXpress TMS</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="case-body">
+    <div class="case-block">
+      <h2><span class="idx">01</span> Business Challenge</h2>
+      <p>Last-mile delivery planning was manual with no TMS, requiring order automation, geocoding, area-based routing and slot-based delivery planning.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">02</span> Solution Delivered</h2>
+      <p>Integrated SAP Hybris orders with WebXpress TMS, consumed Google Maps APIs for geocoding, created a custom area master based on pincodes and enabled delivery route planning by slots.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">03</span> My Role</h2>
+      <ul>
+        <li>Led onsite implementation and training.</li>
+        <li>Configured area master and route planning rules.</li>
+        <li>Coordinated SAP Hybris integration with TMS.</li>
+        <li>Supported UAT, go-live and mobile delivery rollout.</li>
+      </ul>
+    </div>
+
+    <div class="case-block impact">
+      <h2><span class="idx">04</span> Business Impact</h2>
+      <ul>
+        <li>Digitized manual last-mile delivery planning.</li>
+        <li>Enabled slot-based dispatch and route planning.</li>
+        <li>Improved delivery execution through mobile POD and GPS visibility.</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">05</span> Technology Stack</h2>
+      <div class="chips">
+        <span class="chip">SAP Hybris Integration</span>
+        <span class="chip">WebXpress TMS</span>
+        <span class="chip">Google Maps API</span>
+        <span class="chip">Route Planning</span>
+        <span class="chip">Mobile POD</span>
+        <span class="chip">GPS Tracking</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-cta">
+    <a class="btn secondary" href="#case-studies">← All Case Studies</a>
+    <a class="btn primary" href="#case-sugar">Next: Sugar Cosmetics →</a>
+  </div>
+
+
+  <section class="case-hero case-detail" id="case-sugar">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="#case-studies">← All Case Studies</a></p>
+
+      <div class="case-manifest">
+        <div class="case-title-row">
+          <div>
+            <p class="eyebrow">Enterprise Applications</p>
+            <h1>Sugar Cosmetics</h1>
+          </div>
+          <span class="status-stamp">File No. 05 / 06</span>
+        </div>
+        <p class="case-summary">Business-side ownership of enterprise applications supporting Dynamics 365 F&amp;O, Unicommerce OMS/WMS, marketplace operations, automation and fulfilment.</p>
+
+        <div class="manifest-meta">
+          <div><span class="k">Sector</span><span class="v">Beauty / D2C Retail</span></div>
+          <div><span class="k">Scope</span><span class="v">3 Brands · 4 Warehouses</span></div>
+          <div><span class="k">Platform</span><span class="v">Dynamics 365 F&amp;O + Unicommerce</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="case-body">
+    <div class="case-block">
+      <h2><span class="idx">01</span> Business Challenge</h2>
+      <p>Sugar needed continuous enhancement of enterprise applications across procurement, warehousing, order management, marketplace integrations, inventory visibility and business process governance.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">02</span> Solution Delivered</h2>
+      <p>Managed business-side requirements, vendor coordination, UAT and rollout across Dynamics 365 F&amp;O, OMS/WMS, marketplace integrations, inventory dashboards, Freshdesk and fulfilment workflows.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">03</span> My Role</h2>
+      <ul>
+        <li>Supported Dynamics 365 F&amp;O P2P and O2C implementation.</li>
+        <li>Owned requirements, BRDs, SOPs, UAT and go-live support.</li>
+        <li>Coordinated with vendors and business teams.</li>
+        <li>Managed enhancements across supply chain applications.</li>
+      </ul>
+    </div>
+
+    <div class="case-block impact">
+      <h2><span class="idx">04</span> Business Impact</h2>
+      <ul>
+        <li>Supported three brands and four warehouses.</li>
+        <li>Improved inventory visibility and marketplace operations.</li>
+        <li>Enabled Same-Day and Next-Day delivery for website orders.</li>
+        <li>Digitized GT claims and credit note workflows.</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">05</span> Technology Stack</h2>
+      <div class="chips">
+        <span class="chip">Microsoft Dynamics 365 F&amp;O</span>
+        <span class="chip">Unicommerce OMS/WMS</span>
+        <span class="chip">Freshdesk</span>
+        <span class="chip">Shopify</span>
+        <span class="chip">REST APIs</span>
+        <span class="chip">Inventory Dashboard</span>
+        <span class="chip">UAT</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-cta">
+    <a class="btn secondary" href="#case-studies">← All Case Studies</a>
+    <a class="btn primary" href="#case-batchify">Next: Batchify →</a>
+  </div>
+
+
+  <section class="case-hero case-detail" id="case-batchify">
+    <div class="wrap">
+      <p class="breadcrumb"><a href="#case-studies">← All Case Studies</a></p>
+
+      <div class="case-manifest">
+        <div class="case-title-row">
+          <div>
+            <p class="eyebrow">Business Process Automation</p>
+            <h1>Batchify</h1>
+          </div>
+          <span class="status-stamp">File No. 06 / 06</span>
+        </div>
+        <p class="case-summary">Internal batch management application replacing spreadsheet-driven batch generation and governance for cosmetic product batches.</p>
+
+        <div class="manifest-meta">
+          <div><span class="k">Sector</span><span class="v">Process Automation</span></div>
+          <div><span class="k">Scope</span><span class="v">Procurement → Warehouse Batch Workflow</span></div>
+          <div><span class="k">Platform</span><span class="v">Internal Application + WMS Process</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="case-body">
+    <div class="case-block">
+      <h2><span class="idx">01</span> Business Challenge</h2>
+      <p>Procurement teams manually created and maintained batch series in Excel, creating dependency on spreadsheets and increasing risk of inconsistent batch creation.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">02</span> Solution Delivered</h2>
+      <p>Built an internal application to generate standardized batch numbers, bulk upload SKU batches and provide approved batch information to vendors for packaging and downstream warehouse receiving.</p>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">03</span> My Role</h2>
+      <ul>
+        <li>Gathered requirements from procurement and warehouse teams.</li>
+        <li>Defined batch numbering logic and workflow.</li>
+        <li>Coordinated development and UAT.</li>
+        <li>Supported rollout and user adoption.</li>
+      </ul>
+    </div>
+
+    <div class="case-block impact">
+      <h2><span class="idx">04</span> Business Impact</h2>
+      <ul>
+        <li>Reduced manual Excel dependency.</li>
+        <li>Improved batch governance and standardization.</li>
+        <li>Supported PO to WMS to ASN to GRN to Putaway workflow.</li>
+      </ul>
+    </div>
+
+    <div class="case-block">
+      <h2><span class="idx">05</span> Technology Stack</h2>
+      <div class="chips">
+        <span class="chip">Internal Application</span>
+        <span class="chip">WMS Process</span>
+        <span class="chip">Batch Master</span>
+        <span class="chip">Excel Uploads</span>
+        <span class="chip">Procurement Workflow</span>
+        <span class="chip">UAT</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="case-cta">
+    <a class="btn secondary" href="#case-studies">← All Case Studies</a>
+    <a class="btn primary" href="#contact">Get in Touch →</a>
+  </div>
+
+
+  <section id="journey" class="section journey">
+    <p class="eyebrow">Delivery Path</p>
+    <h2>Three employers, five client deliveries, one continuous track record.</h2>
+    <div class="route-strip">
+      <div class="route-stop">
+        <span class="dot"></span>
+        <span class="code">WEBXPRESS</span>
+        <span class="caption">Employer · Base</span>
+      </div>
+      <div class="route-stop">
+        <span class="dot"></span>
+        <span class="code">STARSHIP</span>
+        <span class="caption">Client · India</span>
+      </div>
+      <div class="route-stop">
+        <span class="dot"></span>
+        <span class="code">TOLL</span>
+        <span class="caption">Client · Malaysia &amp; Thailand</span>
+      </div>
+      <div class="route-stop">
+        <span class="dot"></span>
+        <span class="code">LULU</span>
+        <span class="caption">Client · India</span>
+      </div>
+      <div class="route-stop">
+        <span class="dot"></span>
+        <span class="code">FEDEX</span>
+        <span class="caption">Client · UAE</span>
+      </div>
+      <div class="route-stop">
+        <span class="dot"></span>
+        <span class="code">KHIMJI</span>
+        <span class="caption">Client · Oman</span>
+      </div>
+      <div class="route-stop">
+        <span class="dot"></span>
+        <span class="code">SUGAR</span>
+        <span class="caption">Employer · India</span>
+      </div>
+      <div class="route-stop current">
+        <span class="dot"></span>
+        <span class="code">FUNKYSOUQ</span>
+        <span class="caption">Employer · UAE</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section tech">
+    <p class="eyebrow">Technology Ecosystem</p>
+    <h2>Platforms, integrations and delivery methods.</h2>
+    <div class="tech-grid">
+      <div><h3>Enterprise Apps</h3><p>Dynamics 365 F&amp;O, Unicommerce OMS/WMS, Bagisto, Shopify</p></div>
+      <div><h3>Supply Chain</h3><p>TMS, WMS, OMS, DMS, Control Tower, Load Planning, Route Planning</p></div>
+      <div><h3>Integration</h3><p>REST APIs, EDI, SOAP, SFTP/FTP, JSON/XML, GPS, Geofencing</p></div>
+      <div><h3>Delivery</h3><p>BRD, FRD, SOP, UAT, Agile, Waterfall, Hybrid, Vendor Management</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="section contact">
+    <p class="eyebrow">Contact</p>
+    <h2>Let's connect.</h2>
+    <div class="contact-panel">
+      <div>
+        <p style="color:var(--text-dim); max-width:40ch;">Open to Project Manager, Business Analyst and Implementation Consultant roles across the UAE and GCC.</p>
+        <div class="contact-list">
+          <span>📍 Dubai, UAE</span>
+          <a href="mailto:fais_sk@outlook.com">✉ fais_sk@outlook.com</a>
+          <a href="tel:+971552540969">☎ +971 55 254 0969</a>
+        </div>
+      </div>
+      <div class="contact-actions">
+        <a class="btn primary" href="mailto:fais_sk@outlook.com">Email Me</a>
+        <a class="btn secondary" href="https://linkedin.com/in/faissk" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© Faisal Shaikh. Enterprise Technology Portfolio.</span>
+    <span>Dubai, UAE</span>
+  </div>
+</footer>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+</script>
+</body>
+</html>
